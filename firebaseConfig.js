@@ -1,0 +1,79 @@
+const firebaseConfig = {
+  databaseURL: "https://eventplannermiguel-default-rtdb.firebaseio.com",
+};
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+// Reference to the 'items' collection in the Realtime Database
+const usersRef = database.ref("users");
+
+// usersRef
+//   .orderByChild("email")
+//   .equalTo("a@gmail.com")
+//   .once("value")
+//   .then((snapshot) => {
+//     snapshot.forEach((item) => {
+//       console.log(item.key);
+//       console.log(item.val());
+//       // const li = document.createElement("li");
+//       // li.textContent = item.val().name;
+//       // filteredItemList.appendChild(li);
+//     });
+//   })
+//   .catch((error) => console.error("Error querying items: ", error));
+
+// Utility function to convert Firebase snapshot to an array of items
+const snapshotToArray = (snapshot) => {
+  const result = [];
+  snapshot.forEach((childSnapshot) => {
+    const item = childSnapshot.val();
+    item.key = childSnapshot.key;
+    result.push(item);
+  });
+  return result;
+};
+
+const createRecord = async (collection, data) => {
+  // send data
+  var listRef = database.ref(collection);
+  var newRef = listRef.push();
+  await newRef.set(data);
+};
+
+// Utility function to load all items
+const loadAllItems = async (collection) => {
+  const collectionRef = database.ref(collection);
+  const snapshot = await collectionRef.once("value");
+  return snapshotToArray(snapshot);
+};
+
+// Utility function to perform an asynchronous query
+const queryItem = async (collection, attribute, value) => {
+  const collectionRef = database.ref(collection);
+  const snapshot = await collectionRef
+    .orderByChild(attribute)
+    .equalTo(value)
+    .once("value");
+  return snapshotToArray(snapshot);
+};
+
+// Utility function to load an item by key
+const loadItemByKey = async (collection, key) => {
+  const collectionRef = database.ref(collection);
+  const snapshot = await collectionRef.child(key).once("value");
+  return snapshot.val();
+};
+
+// Utility function to perform an asynchronous update
+const updateItemAsync = async (collection, key, payload) => {
+  const collectionRef = database.ref(collection);
+  await collectionRef.child(key).update(payload);
+};
+
+// // send data
+// var listRef = database.ref("event_rooms/");
+// var newRef = listRef.push();
+// newRef.set({
+//   name: "Room2",
+//   pic: "https://media.istockphoto.com/id/521806786/photo/3d-rendering-of-empty-room-interior-white-brown-colors.webp?b=1&s=170667a&w=0&k=20&c=dnsyx7qNFEU7susAMx_AnJl8wdIpY8qpuREbW8nk30A=",
+// });
