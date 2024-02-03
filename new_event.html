@@ -53,7 +53,9 @@
     </main>
 
     <div class="container">
-      <div class="card">
+      <div id="error" class="form-group"></div>
+      <div id="success" class="form-group"></div>
+      <div class="card" id="new_event_form">
         <div class="card-header">Create New Event</div>
         <div class="card-body">
           <div class="form-group" style="margin-bottom: 10px">
@@ -111,8 +113,6 @@
               Reset
             </button>
           </div>
-          <div id="error" class="form-group"></div>
-          <div id="success" class="form-group"></div>
         </div>
       </div>
     </div>
@@ -132,6 +132,16 @@
     <script src="main.js"></script>
 
     <script>
+      const new_event_form = document.getElementById("new_event_form");
+      console.log(loggedIn);
+      if (loggedIn != "true") {
+        document.getElementById(
+          "success"
+        ).innerHTML = `<div class="alert alert-danger" role="alert">
+                                                          Please click the Register tab to get started
+                                                        </div>`;
+        new_event_form.style.display = "none";
+      }
       const reset = () => {
         location.href = "new_event.html";
       };

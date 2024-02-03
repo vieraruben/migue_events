@@ -44,7 +44,7 @@ if (loggedIn != "true") {
   logoutNavItem.style = "margin-right: 10px";
   logoutNavItem.classList.add("nav-item");
   logoutNavItem.innerHTML = `
-              <a class="nav-link" onclick="logOut()">Logout</a>
+              <a class="nav-link active" onclick="logOut()">Logout</a>
             `;
   document.getElementById("mynavbar").appendChild(logoutNavItem);
 }
