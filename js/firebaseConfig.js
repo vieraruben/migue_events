@@ -7,21 +7,6 @@ const database = firebase.database();
 // Reference to the 'items' collection in the Realtime Database
 const usersRef = database.ref("users");
 
-// usersRef
-//   .orderByChild("email")
-//   .equalTo("a@gmail.com")
-//   .once("value")
-//   .then((snapshot) => {
-//     snapshot.forEach((item) => {
-//       console.log(item.key);
-//       console.log(item.val());
-//       // const li = document.createElement("li");
-//       // li.textContent = item.val().name;
-//       // filteredItemList.appendChild(li);
-//     });
-//   })
-//   .catch((error) => console.error("Error querying items: ", error));
-
 // Utility function to convert Firebase snapshot to an array of items
 const snapshotToArray = (snapshot) => {
   const result = [];
@@ -70,7 +55,7 @@ const updateItemAsync = async (collection, key, payload) => {
   await collectionRef.child(key).update(payload);
 };
 
-// // send data
+// Create a new event room
 // var listRef = database.ref("event_rooms/");
 // var newRef = listRef.push();
 // newRef.set({

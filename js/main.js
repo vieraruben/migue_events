@@ -78,3 +78,21 @@ const queryTable = (target_query, filterValue) => {
     }
   }
 };
+
+var ascendingOrder = true;
+function sortTableByDate(tableId, date_field_position) {
+  ascendingOrder = !ascendingOrder;
+  var table = document.getElementById(tableId);
+  var tbody = table.getElementsByTagName("tbody")[0];
+  var rows = [].slice.call(tbody.getElementsByTagName("tr"));
+  rows.sort(function (a, b) {
+    var dateA = new Date(a.cells[date_field_position].textContent);
+    var dateB = new Date(b.cells[date_field_position].textContent);
+    // Toggle the order based on the flag
+    var order = ascendingOrder ? dateA - dateB : dateB - dateA;
+    return order;
+  });
+  rows.forEach(function (row) {
+    tbody.appendChild(row);
+  });
+}
