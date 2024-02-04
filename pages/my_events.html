@@ -144,7 +144,6 @@
           eventTable.innerHTML = "";
           for (var key in allEvents) {
             var value = allEvents[key];
-            console.log(value.name);
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td scope="col" id="event_name">${value.name}</td>

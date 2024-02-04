@@ -131,7 +131,6 @@
 
     <script>
       const new_event_form = document.getElementById("new_event_form");
-      console.log(loggedIn);
       if (loggedIn != "true") {
         document.getElementById(
           "success"
@@ -160,7 +159,6 @@
       loadEventRooms();
 
       const createEventRecord = async () => {
-        console.log("createEvent");
         let name = document.getElementById("name").value;
         let type = document.getElementById("type").value;
         let room = document.getElementById("room").value;
