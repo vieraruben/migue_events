@@ -81,6 +81,12 @@ const queryTable = (target_query, filterValue) => {
 
 var ascendingOrder = true;
 function sortTableByDate(tableId, date_field_position) {
+  document.getElementById("sort_up").style.display = ascendingOrder
+    ? ""
+    : "none";
+  document.getElementById("sort_down").style.display = ascendingOrder
+    ? "none"
+    : "";
   ascendingOrder = !ascendingOrder;
   var table = document.getElementById(tableId);
   var tbody = table.getElementsByTagName("tbody")[0];

@@ -80,7 +80,8 @@
               <tr>
                 <th scope="col"></i>Event Name</th>
                 <th scope="col">
-                    <select class="form-select" aria-label="Default select example" id="event_type_filter" onchange="queryTable('#eventTable tbody', '#searchInput')">
+                    <select class="form-select" aria-label="Default select example" id="event_type_filter" onchange="queryTable('#eventTable tbody', '#searchInput')"     
+                     style="border: 0; font-weight: bold; padding-bottom: 0;padding-right: 0; padding-left: 0;">
                     <option selected value="all"><i class="bi bi-filter"></i>Event Type All</option>
                     <option value="Type1">Type1</option>
                     <option value="Type2">Type2</option>
@@ -88,7 +89,7 @@
                   </select>
                 </th>
                 <th scope="col">Event Room</th>
-                <th scope="col" onclick="sortTableByDate('eventTable', 3)"><i class="bi bi-sort-up"></i>Event Date</th>
+                <th scope="col" onclick="sortTableByDate('eventTable', 3)" style="cursor: pointer;">Event Date<i id="sort_up" class="bi bi-sort-up"></i><i style="display: none;" id="sort_down" class="bi bi-sort-down"></i></th>
                 <th scope="col">Start Time</th>
                 <th scope="col">End Time</th>
                 <th scope="col">Description</th>

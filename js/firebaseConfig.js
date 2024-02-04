@@ -55,6 +55,12 @@ const updateItemAsync = async (collection, key, payload) => {
   await collectionRef.child(key).update(payload);
 };
 
+// Utility function to perform an asynchronous delete
+const deleteItemAsync = async (collection, key) => {
+  const collectionRef = database.ref(collection);
+  await collectionRef.child(key).remove();
+};
+
 // Create a new event room
 // var listRef = database.ref("event_rooms/");
 // var newRef = listRef.push();

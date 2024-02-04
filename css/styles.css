@@ -19,3 +19,18 @@
   align-items: center;
   justify-content: center;
 }
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.caret-off::before {
+  display: none;
+}
+.caret-off::after {
+  display: none;
+}
+
+.dropdown-toggle::after {
+  content: none;
+}
