@@ -81,7 +81,10 @@
                 <th scope="col"></i>Event Name</th>
                 <th scope="col">
                     <select class="form-select" aria-label="Default select example" id="event_type_filter" onchange="queryTable('#eventTable tbody', '#searchInput')"     
-                     style="border: 0; font-weight: bold; padding-bottom: 0;padding-right: 0; padding-left: 0;">
+                     style="border: 0; font-weight: bold; 
+                     padding-bottom: 0;padding-right: 0; 
+                     padding-left: 0; 
+                     width: 140px;">
                     <option selected value="all"><i class="bi bi-filter"></i>Event Type All</option>
                     <option value="Meeting">Meeting</option>
                     <option value="Seminar">Seminar</option>
@@ -97,7 +100,7 @@
                 <th scope="col" onclick="sortTableByDate('eventTable', 3)" style="cursor: pointer;">Event Date<i id="sort_up" class="bi bi-sort-up"></i><i style="display: none;" id="sort_down" class="bi bi-sort-down"></i></th>
                 <th scope="col">Start Time</th>
                 <th scope="col">End Time</th>
-                <th scope="col">Description</th>
+                <th scope="col" style="width: 100px;">Description</th>
                 <th scope="col">Organizer Name</th>
                 <th scope="col">Organizer Email</th>
               </tr>
@@ -107,6 +110,14 @@
         </div>
       </div>
     </main>
+
+    <footer class="footer">
+      <div class="container center">
+        <span class="text-muted">© 2024 MGA Event Planner - All Rights Reserved</span>
+      </div>
+    </footer>
+
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
@@ -152,5 +163,6 @@
 
       initializePage();
     </script>
+     
   </body>
 </html>

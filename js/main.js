@@ -37,7 +37,7 @@ if (loggedIn != "true") {
   loginNavItem.classList.add("nav-item");
   loginNavItem.innerHTML = `
                     <a href="${index_prefix}signin.html" style="cursor: pointer;" class="nav-link active" aria-current="page"
-                      >Login</a
+                      >Log in</a
                     >
                   `;
 
@@ -55,7 +55,7 @@ if (loggedIn != "true") {
   logoutNavItem.style = "margin-right: 10px";
   logoutNavItem.classList.add("nav-item");
   logoutNavItem.innerHTML = `
-              <a class="nav-link active" style="cursor: pointer;" onclick="logOut()">Logout</a>
+              <a class="nav-link active" style="cursor: pointer;" onclick="logOut()">Log out</a>
             `;
   document.getElementById("mynavbar").appendChild(logoutNavItem);
 }
