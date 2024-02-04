@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
 
-    <title>Event Rooms</title>
+    <title>Sign In</title>
 
     <link
       rel="stylesheet"
@@ -20,7 +20,7 @@
     />
 
     <!-- Custom styles for this template -->
-    <link href="styles.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
     <style>
       .signin {
         display: flex;
@@ -38,7 +38,7 @@
           class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"
         >
           <a
-            href="index.html"
+            href="../index.html"
             class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
           >
             <svg class="bi me-2" width="40" height="32">
@@ -60,15 +60,28 @@
     </main>
 
     <div class="container signin">
-      <table id="eventRoomsTable" class="table">
-        <thead>
-          <tr>
-            <th scope="col">Room Name</th>
-            <th scope="col">Room Pic</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+      <div class="card">
+        <div class="card-header">SingIn</div>
+        <div class="card-body">
+          <div>
+            <div class="form-group" style="margin-bottom: 10px">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" />
+            </div>
+            <div class="form-group" style="margin-bottom: 10px">
+              <label for="password">Password</label>
+              <input type="text" class="form-control" id="password" />
+            </div>
+
+            <div class="form-group">
+              <button class="btn btn-primary mb-2" onclick="signUser()">
+                Signin
+              </button>
+            </div>
+            <div id="error" class="form-group"></div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- Add Bootstrap JS and Popper.js scripts (optional) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -82,30 +95,38 @@
     <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-database-compat.js"></script>
 
-    <script src="firebaseConfig.js"></script>
+    <script src="../js/firebaseConfig.js"></script>
 
-    <script src="main.js"></script>
+    <script src="../js/main.js"></script>
 
     <script>
-      const initializePage = async () => {
-        const allEvents = await loadAllItems("event_rooms");
-
-        const eventTable = document.querySelector("#eventRoomsTable tbody");
-        // Clear existing rows
-        eventTable.innerHTML = "";
-        for (var key in allEvents) {
-          var value = allEvents[key];
-          console.log(value.name);
-          const row = document.createElement("tr");
-          row.innerHTML = `
-                <td scope="col">${value.name}</td>
-                <td scope="col"><img src="${value.pic}" alt="Italian Trulli"></td>
-                
-              `;
-          eventTable.appendChild(row);
+      const signUser = async () => {
+        let error = document.getElementById("error");
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const users = await queryItem("users", "email", email);
+        let wrong_password = false;
+        let name = "";
+        for (const key in users) {
+          name = users[key].name;
+          wrong_password = users[key].password != password;
         }
+        if (users.length == 0 || wrong_password) {
+          error.innerHTML = `<div class="alert alert-danger" role="alert">
+                                    Email or password are incorrect!
+                                  </div>`;
+          return;
+        }
+        // Save data to local storage
+        localStorage.setItem("loggedIn", "true");
+        localStorage.setItem("name", name);
+        localStorage.setItem("email", email);
+        localStorage.setItem("password", password);
+
+        // // Retrieve data from local storage
+        // const storedValue = localStorage.getItem("key");
+        location.href = "../index.html";
       };
-      initializePage();
     </script>
   </body>
 </html>

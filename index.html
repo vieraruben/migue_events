@@ -29,7 +29,7 @@
     />
 
     <!-- Custom styles for this template -->
-    <link href="styles.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
   </head>
   <body>
     <main>
@@ -46,15 +46,15 @@
             <svg class="bi me-2" width="40" height="32">
               <use xlink:href="#bootstrap" />
             </svg>
-            <span class="fs-4">Event Planner</span>
+            <span class="fs-4">MGA Event Planner</span>
           </a>
 
           <ul class="nav nav-pills" id="mynavbar">
             <li class="nav-item">
-              <a href="new_event.html" class="nav-link">Event Request</a>
+              <a href="pages/new_event.html" class="nav-link">Event Request</a>
             </li>
             <li class="nav-item">
-              <a href="event_rooms.html" class="nav-link">Event Rooms</a>
+              <a href="pages/event_rooms.html" class="nav-link">Event Rooms</a>
             </li>
           </ul>
         </header>
@@ -62,7 +62,7 @@
         <div>
           <h2 class="text-center">Middle Georgia State University Events:</h2>
 
-          <div class="input-group mb-3" style="width: 30%">
+          <div class="input-group mb-3 container center" style="width: 30%; margin-top: 2rem;">
             <!-- <span class="input-group-text" id="basic-addon1">@</span> -->
             <input
               type="text"
@@ -92,7 +92,8 @@
                 <th scope="col">Start Time</th>
                 <th scope="col">End Time</th>
                 <th scope="col">Description</th>
-                <th scope="col">Event Organizer</th>
+                <th scope="col">Organizer Name</th>
+                <th scope="col">Organizer Email</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -110,9 +111,9 @@
     <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-database-compat.js"></script>
 
-    <script src="firebaseConfig.js"></script>
+    <script src="js/firebaseConfig.js"></script>
 
-    <script src="main.js"></script>
+    <script src="js/main.js"></script>
 
     <script>
       const initializePage = async () => {
@@ -134,7 +135,8 @@
                 <td scope="col">${value.start_time}</td>
                 <td scope="col">${value.end_time}</td>
                 <td scope="col" id="description">${value.description}</td>
-                <td scope="col"><a href="mailto:${value.organizer}">${value.name} - ${value.organizer}</a></td>
+                <td scope="col">${value.organizer_name}</td>
+                <td scope="col"><a href="mailto:${value.organizer_email}">${value.organizer_email}</a></td>
               `;
             eventTable.appendChild(row);
           }

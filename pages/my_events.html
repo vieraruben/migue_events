@@ -20,7 +20,7 @@
     />
 
     <!-- Custom styles for this template -->
-    <link href="styles.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
     <!-- Option 1: Include in HTML -->
     <link
       rel="stylesheet"
@@ -43,13 +43,13 @@
           class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"
         >
           <a
-            href="index.html"
+            href="../index.html"
             class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
           >
             <svg class="bi me-2" width="40" height="32">
               <use xlink:href="#bootstrap" />
             </svg>
-            <span class="fs-4">Event Planner</span>
+            <span class="fs-4">MGA Event Planner</span>
           </a>
 
           <ul class="nav nav-pills" id="mynavbar">
@@ -68,7 +68,10 @@
       <div>
         <h2 class="text-center">My Events:</h2>
 
-        <div class="input-group mb-3" style="width: 30%">
+        <div
+          class="input-group mb-3 container center"
+          style="width: 30%; margin-top: 2rem"
+        >
           <!-- <span class="input-group-text" id="basic-addon1">@</span> -->
           <input
             type="text"
@@ -105,7 +108,8 @@
               <th scope="col">Start Time</th>
               <th scope="col">End Time</th>
               <th scope="col">Description</th>
-              <th scope="col">Event Organizer</th>
+              <th scope="col">Organizer Name</th>
+              <th scope="col">Organizer Email</th>
               <th scope="col">Actions</th>
             </tr>
           </thead>
@@ -124,15 +128,15 @@
     <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-database-compat.js"></script>
 
-    <script src="firebaseConfig.js"></script>
+    <script src="../js/firebaseConfig.js"></script>
 
-    <script src="main.js"></script>
+    <script src="../js/main.js"></script>
 
     <script>
       const initializePage = async () => {
         const email = localStorage.getItem("email");
         try {
-          const allEvents = await queryItem("events", "organizer", email);
+          const allEvents = await queryItem("events", "organizer_email", email);
 
           const eventTable = document.querySelector("#eventTable tbody");
           // Clear existing rows
@@ -149,8 +153,9 @@
                 <td scope="col">${value.start_time}</td>
                 <td scope="col">${value.end_time}</td>
                 <td scope="col" id="description">${value.description}</td>
-                <td scope="col"><a href="mailto:${value.organizer}">${value.name} - ${value.organizer}</a></td>
-                <td scope="col"><a href="update_event.html?id=${value.key}">Update</button></td>
+                <td scope="col">${value.organizer_name}</td>
+                <td scope="col"><a href="mailto:${value.organizer_email}">${value.organizer_email}</a></td>
+                <td scope="col"><a href="update_event.html?id=${value.key}">Update</a></td>
               `;
             eventTable.appendChild(row);
           }

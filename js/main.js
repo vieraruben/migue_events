@@ -1,8 +1,18 @@
+let index_prefix = "";
+if (window.location.href.includes("index.html")) {
+  index_prefix = "pages/";
+}
+
 const logOut = () => {
+  let prefix = "";
   localStorage.setItem("loggedIn", "false");
   localStorage.setItem("email", "");
   localStorage.setItem("password", "");
-  location.href = "index.html";
+  if (!window.location.href.includes("index.html")) {
+    prefix = "../";
+  }
+
+  location.href = `${prefix}index.html`;
 };
 
 const loggedIn = localStorage.getItem("loggedIn");
@@ -13,7 +23,7 @@ if (loggedIn != "true") {
   registerNavItem.classList.add("nav-item");
   registerNavItem.innerHTML = `
                     <a
-                      href="register.html"
+                      href=${index_prefix}register.html
                       class="nav-link active"
                       aria-current="page"
                       >Register</a
@@ -25,7 +35,7 @@ if (loggedIn != "true") {
   loginNavItem.style = "margin-right: 10px";
   loginNavItem.classList.add("nav-item");
   loginNavItem.innerHTML = `
-                    <a href="signin.html" class="nav-link active" aria-current="page"
+                    <a href="${index_prefix}signin.html" class="nav-link active" aria-current="page"
                       >Login</a
                     >
                   `;
@@ -36,7 +46,7 @@ if (loggedIn != "true") {
   myEventsItem.style = "margin-right: 10px";
   myEventsItem.classList.add("nav-item");
   myEventsItem.innerHTML = `
-              <a href="my_events.html" class="nav-link">My Events</a>
+              <a href="${index_prefix}my_events.html" class="nav-link">My Events</a>
             `;
   document.getElementById("mynavbar").appendChild(myEventsItem);
 

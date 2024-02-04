@@ -31,13 +31,13 @@
           class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"
         >
           <a
-            href="index.html"
+            href="../index.html"
             class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
           >
             <svg class="bi me-2" width="40" height="32">
               <use xlink:href="#bootstrap" />
             </svg>
-            <span class="fs-4">Event Planner</span>
+            <span class="fs-4">MGA Event Planner</span>
           </a>
 
           <ul class="nav nav-pills" id="mynavbar">
@@ -52,7 +52,7 @@
       </div>
     </main>
 
-    <div class="container">
+    <div class="container center" style="width: 50%">
       <div id="error" class="form-group"></div>
       <div id="success" class="form-group"></div>
       <div class="card">
@@ -127,9 +127,9 @@
     <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-database-compat.js"></script>
 
-    <script src="firebaseConfig.js"></script>
+    <script src="../js/firebaseConfig.js"></script>
 
-    <script src="main.js"></script>
+    <script src="../js/main.js"></script>
 
     <script>
       const urlParams = new URLSearchParams(window.location.search);
@@ -173,7 +173,8 @@
         let end_time = document.getElementById("end_time").value;
         let description = document.getElementById("description").value;
 
-        const organizer = localStorage.getItem("email");
+        const organizer_email = localStorage.getItem("email");
+        const organizer_name = localStorage.getItem("name");
 
         let response = await updateItemAsync("events", event_id, {
           name,
@@ -183,7 +184,8 @@
           start_time,
           end_time,
           description,
-          organizer,
+          organizer_email,
+          organizer_name,
         });
 
         success_message.innerHTML = `<div class="alert alert-success" role="alert">

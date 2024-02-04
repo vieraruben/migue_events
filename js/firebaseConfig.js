@@ -74,6 +74,6 @@ const updateItemAsync = async (collection, key, payload) => {
 // var listRef = database.ref("event_rooms/");
 // var newRef = listRef.push();
 // newRef.set({
-//   name: "Room2",
+//   name: "Room3",
 //   pic: "https://media.istockphoto.com/id/521806786/photo/3d-rendering-of-empty-room-interior-white-brown-colors.webp?b=1&s=170667a&w=0&k=20&c=dnsyx7qNFEU7susAMx_AnJl8wdIpY8qpuREbW8nk30A=",
 // });
