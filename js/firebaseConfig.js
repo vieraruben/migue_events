@@ -61,10 +61,11 @@ const deleteItemAsync = async (collection, key) => {
   await collectionRef.child(key).remove();
 };
 
-// Create a new event room
+// // Create a new event room
 // var listRef = database.ref("event_rooms/");
 // var newRef = listRef.push();
 // newRef.set({
-//   name: "Room3",
-//   pic: "https://media.istockphoto.com/id/521806786/photo/3d-rendering-of-empty-room-interior-white-brown-colors.webp?b=1&s=170667a&w=0&k=20&c=dnsyx7qNFEU7susAMx_AnJl8wdIpY8qpuREbW8nk30A=",
+//   name: "THEATRE.jpg",
+//   pic: "https://github.com/vieraruben/migue_events/blob/main/images/THEATRE.jpg",
+//   room_capacity: 250,
 // });

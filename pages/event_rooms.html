@@ -66,6 +66,7 @@
     <div class="container" style="padding-left: 7em">
       <div class="row" id="list_of_rooms"></div>
     </div>
+
     <!-- Add Bootstrap JS and Popper.js scripts (optional) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script
@@ -95,11 +96,10 @@
           card.classList = "col";
           card.innerHTML = `
           <div class="card" style="width: 30rem; margin-bottom: 2em; margin-top: 7em"">
-            <img class="card-img-top" src="${value.pic}" alt="Card image cap">
+            <img class="card-img-top" src="${value.pic}" style="height: 300px" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">${value.name}</h5>
               <p class="card-text">Capacity: ${value.room_capacity}</p>
-              <p class="card-text">Contact Info: <a href="mailto:${value.contact_info}">${value.contact_info}</a></p>
             </div>
           </div>
               
