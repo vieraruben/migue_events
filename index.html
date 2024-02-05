@@ -84,6 +84,7 @@
                      style="border: 0; font-weight: bold; 
                      padding-bottom: 0;padding-right: 0; 
                      padding-left: 0; 
+                     cursor: pointer;
                      width: 140px;">
                     <option selected value="all"><i class="bi bi-filter"></i>Event Type All</option>
                     <option value="Meeting">Meeting</option>
@@ -96,11 +97,11 @@
                     <option value="Other">Other</option>
                   </select>
                 </th>
-                <th scope="col">Event Room</th>
+                <th scope="col" style="width: 150px;">Event Room</th>
                 <th scope="col" onclick="sortTableByDate('eventTable', 3)" style="cursor: pointer;">Event Date<i id="sort_up" class="bi bi-sort-up"></i><i style="display: none;" id="sort_down" class="bi bi-sort-down"></i></th>
                 <th scope="col">Start Time</th>
                 <th scope="col">End Time</th>
-                <th scope="col" style="width: 100px;">Description</th>
+                <th scope="col" style="width: 200px;">Description</th>
                 <th scope="col">Organizer Name</th>
                 <th scope="col">Organizer Email</th>
               </tr>
