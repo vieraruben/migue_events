@@ -55,9 +55,11 @@
     <div class="container center" style="padding-bottom: 30px">
       <h2>Event Request:</h2>
     </div>
-    <div class="container center" style="margin-bottom: 300px">
+    <div class="container center" style="padding-bottom: 30px">
       <div id="error" class="form-group"></div>
       <div id="success" class="form-group"></div>
+    </div>
+    <div class="container center" style="margin-bottom: 300px">
       <div class="card" id="new_event_form" style="width: 50%">
         <div class="card-header" id="form_title">Create a New Event</div>
         <div class="card-body">
@@ -112,7 +114,10 @@
           </div>
 
           <div class="form-group">
-            <button class="btn btn-primary mb-2" onclick="createEventRecord()">
+            <button
+              class="btn btn-primary mb-2"
+              onclick="createSaveEventRecord()"
+            >
               Submit
             </button>
             <button class="btn btn-secondary mb-2" onclick="reset()">
@@ -200,37 +205,64 @@
       };
       loadEventRooms();
 
-      const createEventRecord = async () => {
+      const createSaveEventRecord = async () => {
+        let success_message = document.getElementById("success");
         let name = document.getElementById("name").value;
         let type = document.getElementById("type").value;
         let room = document.getElementById("room").value;
         let date = document.getElementById("date").value;
-        let start_time_element = document.getElementById("start_time").value;
-        let end_time_element = document.getElementById("end_time").value;
+        let start_time = document.getElementById("start_time").value;
+        let end_time = document.getElementById("end_time").value;
         let description = document.getElementById("description").value;
 
         const organizer_email = localStorage.getItem("email");
         const organizer_name = localStorage.getItem("name");
-
         let error = document.getElementById("error");
+        if (event_id != "-1") {
+          try {
+            let response = await updateItemAsync("events", event_id, {
+              name,
+              type,
+              room,
+              date,
+              start_time,
+              end_time,
+              description,
+              organizer_email,
+              organizer_name,
+            });
 
-        try {
-          await createRecord("events/", {
-            name,
-            type,
-            room,
-            date,
-            start_time,
-            end_time,
-            description,
-            organizer_name,
-            organizer_email,
-          });
-          location.href = "my_events.html";
-        } catch (error) {
-          error.innerHTML = `<div class="alert alert-danger" role="alert">
+            success_message.innerHTML = `<div class="alert alert-success" role="alert">
+                                Event updated!
+                              </div>`;
+            return;
+          } catch (e) {
+            error.innerHTML = `<div class="alert alert-danger" role="alert">
                               There was a server issue!
                             </div>`;
+          }
+        } else {
+          try {
+            await createRecord("events/", {
+              name,
+              type,
+              room,
+              date,
+              start_time,
+              end_time,
+              description,
+              organizer_name,
+              organizer_email,
+            });
+            success_message.innerHTML = `<div class="alert alert-success" role="alert">
+                                Event created!
+                              </div>`;
+            location.href = "my_events.html";
+          } catch (e) {
+            error.innerHTML = `<div class="alert alert-danger" role="alert">
+                              There was a server issue!
+                            </div>`;
+          }
         }
       };
     </script>
