@@ -20,7 +20,7 @@
     />
 
     <!-- Custom styles for this template -->
-    <link href="styles.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
   </head>
   <body>
     <main>
@@ -84,8 +84,6 @@
               id="room"
             >
               <option selected>None</option>
-              <option value="1">Room 1</option>
-              <option value="2">Room 2</option>
             </select>
           </div>
           <div class="form-group" style="margin-bottom: 10px">
@@ -147,6 +145,21 @@
       const reset = () => {
         location.href = "update_event.html";
       };
+
+      // load event rooms
+      const loadEventRooms = async () => {
+        const eventRoom = document.querySelector("#room");
+        const roomList = await loadAllItems("event_rooms");
+        let listEvents = [];
+        for (const key in roomList) {
+          var value = roomList[key];
+          const newOption = document.createElement("option");
+          newOption.value = value.name;
+          newOption.innerHTML = value.name;
+          eventRoom.appendChild(newOption);
+        }
+      };
+      loadEventRooms();
 
       const loadRecord = async (event_id) => {
         const event_record = await loadItemByKey("events", event_id);

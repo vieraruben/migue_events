@@ -171,6 +171,14 @@
     <script src="../js/main.js"></script>
 
     <script>
+      function convertDateFormat(date) {
+        let formatted_date = date + " AM";
+        if (date.valueAsDate.getTime() >= 43200000) {
+          let split_date = start_time_element.value.split(":");
+          start_time =
+            parseInt(split_date[0]) - 12 + ":" + split_date[1] + " PM";
+        }
+      }
       const initializePage = async () => {
         const email = localStorage.getItem("email");
         try {
