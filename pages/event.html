@@ -52,14 +52,14 @@
       </div>
     </main>
 
-    <div class="container center" style="padding-bottom: 300px">
+    <div class="container center" style="padding-bottom: 30px">
       <h2>Event Request:</h2>
     </div>
     <div class="container center" style="margin-bottom: 300px">
       <div id="error" class="form-group"></div>
       <div id="success" class="form-group"></div>
       <div class="card" id="new_event_form" style="width: 50%">
-        <div class="card-header">Create a New Event</div>
+        <div class="card-header" id="form_title">Create a New Event</div>
         <div class="card-body">
           <div class="form-group" style="margin-bottom: 10px">
             <label for="name">Event Name</label>
@@ -157,6 +157,33 @@
       const reset = () => {
         location.href = "new_event.html";
       };
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const event_id = urlParams.get("id");
+
+      const loadRecord = async (event_id) => {
+        const event_record = await loadItemByKey("events", event_id);
+        if (!event_record) {
+          document.getElementById(
+            "error"
+          ).innerHTML = `<div class="alert alert-danger" role="alert">
+                              This record doesn't exist!
+                          </div>`;
+        }
+        document.getElementById("name").value = event_record.name;
+        document.getElementById("type").value = event_record.type;
+        document.getElementById("room").value = event_record.room;
+        document.getElementById("date").value = event_record.date;
+        document.getElementById("start_time").value = event_record.start_time;
+        document.getElementById("end_time").value = event_record.end_time;
+        document.getElementById("description").value = event_record.description;
+      };
+
+      if (event_id != -1) {
+        console.log("heelooooooooooooo");
+        document.getElementById("form_title").innerHTML = "Update Event";
+        loadRecord(event_id);
+      }
 
       // load event rooms
       const loadEventRooms = async () => {

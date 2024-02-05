@@ -109,3 +109,17 @@ function sortTableByDate(tableId, date_field_position) {
     tbody.appendChild(row);
   });
 }
+
+function convertTimeFormat(time) {
+  let split_time = time.split(":");
+  let formatted_time = time + " AM";
+  if (parseInt(split_time[0]) > 12) {
+    formatted_time = parseInt(split_time[0]) - 12 + ":" + split_time[1] + " PM";
+  }
+  return formatted_time;
+}
+function convertDateFormat(date) {
+  let split_date = date.split("-");
+
+  return split_date[2] + "/" + split_date[1] + "/" + split_date[0];
+}

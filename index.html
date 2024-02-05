@@ -51,7 +51,7 @@
 
           <ul class="nav nav-pills" id="mynavbar">
             <li class="nav-item">
-              <a href="pages/new_event.html" class="nav-link">Event Request</a>
+              <a href="pages/event.html?id=-1" class="nav-link">Event Request</a>
             </li>
             <li class="nav-item">
               <a href="pages/event_rooms.html" class="nav-link">Event Rooms</a>
@@ -148,9 +148,9 @@
                 <td scope="col" id="event_name">${value.name}</td>
                 <td scope="col" id="event_type">${value.type}</td>
                 <td scope="col">${value.room}</td>
-                <td scope="col">${value.date}</td>
-                <td scope="col">${value.start_time}</td>
-                <td scope="col">${value.end_time}</td>
+                <td scope="col">${convertDateFormat(value.date)}</td>
+                <td scope="col">${convertTimeFormat(value.start_time)}</td>
+                <td scope="col">${convertTimeFormat(value.end_time)}</td>
                 <td scope="col" id="description">${value.description}</td>
                 <td scope="col">${value.organizer_name}</td>
                 <td scope="col"><a href="mailto:${value.organizer_email}">${value.organizer_email}</a></td>

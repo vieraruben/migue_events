@@ -54,7 +54,7 @@
 
           <ul class="nav nav-pills" id="mynavbar">
             <li class="nav-item">
-              <a href="new_event.html" class="nav-link">Event Request</a>
+              <a href="event.html?id=-1" class="nav-link">Event Request</a>
             </li>
             <li class="nav-item">
               <a href="event_rooms.html" class="nav-link">Event Rooms</a>
@@ -73,7 +73,7 @@
       <div id="success" class="form-group"></div>
       <div>
         <h2 class="text-center">My Events:</h2>
-        <a href="./new_event.html" class="btn btn-primary"
+        <a href="./event.html?id=-1" class="btn btn-primary"
           >Create a New Event</a
         >
         <div
@@ -171,14 +171,6 @@
     <script src="../js/main.js"></script>
 
     <script>
-      function convertDateFormat(date) {
-        let formatted_date = date + " AM";
-        if (date.valueAsDate.getTime() >= 43200000) {
-          let split_date = start_time_element.value.split(":");
-          start_time =
-            parseInt(split_date[0]) - 12 + ":" + split_date[1] + " PM";
-        }
-      }
       const initializePage = async () => {
         const email = localStorage.getItem("email");
         try {
@@ -194,12 +186,16 @@
                 <td scope="col" id="event_name">${value.name}</td>
                 <td scope="col" id="event_type">${value.type}</td>
                 <td scope="col">${value.room}</td>
-                <td scope="col">${value.date}</td>
-                <td scope="col">${value.start_time}</td>
-                <td scope="col">${value.end_time}</td>
+                <td scope="col">${convertDateFormat(value.date)}</td>
+                <td scope="col">${convertTimeFormat(value.start_time)}</td>
+                <td scope="col">${convertTimeFormat(value.end_time)}</td>
                 <td scope="col" id="description">${value.description}</td>
-                <td scope="col"><a href="update_event.html?id=${value.key}">Edit</a></td>
-                <td scope="col"><a href="#" onclick="deleteEvent('${value.key}')">Delete</a></td>
+                <td scope="col"><a href="event.html?id=${
+                  value.key
+                }">Edit</a></td>
+                <td scope="col"><a href="#" onclick="deleteEvent('${
+                  value.key
+                }')">Delete</a></td>
               `;
             eventTable.appendChild(row);
           }
