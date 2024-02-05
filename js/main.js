@@ -66,10 +66,16 @@ const queryTable = (target_query, filterValue) => {
   let allTds = myTable.querySelectorAll("tr");
   // Loop through all list items, and hide those who don't match the search query
   for (i = 0; i < allTds.length; i++) {
-    let event_name = allTds[i].querySelector("#event_name").innerHTML;
-    let description = allTds[i].querySelector("#description").innerHTML;
+    let event_name = allTds[i]
+      .querySelector("#event_name")
+      .innerHTML.toLowerCase();
+    let description = allTds[i]
+      .querySelector("#description")
+      .innerHTML.toLowerCase();
     let typeFilter = document.getElementById("event_type_filter").value;
-    let event_type = allTds[i].querySelector("#event_type").innerHTML;
+    let event_type = allTds[i]
+      .querySelector("#event_type")
+      .innerHTML.toLowerCase();
 
     let type_search_value = event_type == typeFilter || typeFilter == "all";
     if (event_name.includes(query) || description.includes(query)) {
