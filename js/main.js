@@ -72,7 +72,9 @@ const queryTable = (target_query, filterValue) => {
     let description = allTds[i]
       .querySelector("#description")
       .innerHTML.toLowerCase();
-    let typeFilter = document.getElementById("event_type_filter").value;
+    let typeFilter = document
+      .getElementById("event_type_filter")
+      .value.toLowerCase();
     let event_type = allTds[i]
       .querySelector("#event_type")
       .innerHTML.toLowerCase();
@@ -99,8 +101,10 @@ function sortTableByDate(tableId, date_field_position) {
   var tbody = table.getElementsByTagName("tbody")[0];
   var rows = [].slice.call(tbody.getElementsByTagName("tr"));
   rows.sort(function (a, b) {
-    var dateA = new Date(a.cells[date_field_position].textContent);
-    var dateB = new Date(b.cells[date_field_position].textContent);
+    let date1 = a.cells[date_field_position].innerText.split("/");
+    let date2 = b.cells[date_field_position].innerText.split("/");
+    var dateA = new Date(`${date1[0]}-${date1[1]}-${date1[2]}`);
+    var dateB = new Date(`${date2[0]}-${date2[1]}-${date2[2]}`);
     // Toggle the order based on the flag
     var order = ascendingOrder ? dateA - dateB : dateB - dateA;
     return order;
@@ -121,5 +125,5 @@ function convertTimeFormat(time) {
 function convertDateFormat(date) {
   let split_date = date.split("-");
 
-  return split_date[2] + "/" + split_date[1] + "/" + split_date[0];
+  return split_date[1] + "/" + split_date[2] + "/" + split_date[0];
 }
