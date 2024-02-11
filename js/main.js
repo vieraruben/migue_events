@@ -25,7 +25,7 @@ if (loggedIn != "true") {
                     <a
                       href=${index_prefix}register.html
                       style="cursor: pointer;"
-                      class="nav-link active"
+                      class="nav-link active link_button_style"
                       aria-current="page"
                       >Register</a
                     >
@@ -36,7 +36,7 @@ if (loggedIn != "true") {
   loginNavItem.style = "margin-right: 10px";
   loginNavItem.classList.add("nav-item");
   loginNavItem.innerHTML = `
-                    <a href="${index_prefix}signin.html" style="cursor: pointer;" class="nav-link active" aria-current="page"
+                    <a href="${index_prefix}signin.html" style="cursor: pointer;" class="nav-link active link_button_style" aria-current="page"
                       >Log in</a
                     >
                   `;
@@ -47,7 +47,7 @@ if (loggedIn != "true") {
   myEventsItem.style = "margin-right: 10px";
   myEventsItem.classList.add("nav-item");
   myEventsItem.innerHTML = `
-              <a href="${index_prefix}my_events.html" class="nav-link">My Events</a>
+              <a href="${index_prefix}my_events.html" class="nav-link link_event_style">My Events</a>
             `;
   document.getElementById("mynavbar").appendChild(myEventsItem);
 
@@ -55,7 +55,7 @@ if (loggedIn != "true") {
   logoutNavItem.style = "margin-right: 10px";
   logoutNavItem.classList.add("nav-item");
   logoutNavItem.innerHTML = `
-              <a class="nav-link active" style="cursor: pointer;" onclick="logOut()">Log out</a>
+              <a class="nav-link active link_button_style" style="cursor: pointer;" onclick="logOut()">Log out</a>
             `;
   document.getElementById("mynavbar").appendChild(logoutNavItem);
 }

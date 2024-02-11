@@ -45,3 +45,23 @@ footer {
   height: 40px;
   padding-top: 6px;
 }
+
+.link_event_style {
+  color: #fff;
+  background-color: transparent !important;
+  font-size: large;
+  border: solid;
+  border-color: transparent !important;
+}
+
+.link_button_style {
+  color: #fff;
+  background-color: transparent !important;
+  border: solid;
+  font-size: large;
+  margin-right: 1em;
+}
+
+.link_button_style:hover {
+  background-color: blue;
+}
