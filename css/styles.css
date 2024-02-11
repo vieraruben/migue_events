@@ -63,5 +63,5 @@ footer {
 }
 
 .link_button_style:hover {
-  background-color: blue;
+  color: #0d6efd !important;
 }
