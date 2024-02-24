@@ -65,3 +65,11 @@ footer {
 .link_button_style:hover {
   color: #0d6efd !important;
 }
+
+.link_button_style:hover {
+  color: #0d6efd !important;
+}
+
+.event_rooms {
+  border: 1px solid black;
+}
