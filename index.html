@@ -98,6 +98,31 @@
                     <option value="Other">Other</option>
                   </select>
                 </th>
+                <th scope="col" style="width: 100px">
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  id="campus_filter"
+                  onchange="queryTable('#eventTable tbody', '#searchInput')"
+                  style="
+                    border: 0;
+                    font-weight: bold;
+                    padding-bottom: 0;
+                    padding-left: 0;
+                    cursor: pointer;
+                    width: 160px;
+                  "
+                >
+                  <option selected value="all">
+                    <i class="bi bi-filter"></i>Campus
+                  </option>
+                  <option value="macon">Macon</option>
+                  <option value="cochran">Cochran</option>
+                  <option value="dublin">Dublin</option>
+                  <option value="eastman">Eastman</option>
+                  <option value="warner">Warner</option>
+                </select>
+              </th>
                 <th scope="col" style="width: 150px;">Event Room</th>
                 <th scope="col" onclick="sortTableByDate('eventTable', 3)" style="cursor: pointer;">Event Date<i id="sort_up" class="bi bi-sort-up"></i><i style="display: none;" id="sort_down" class="bi bi-sort-down"></i></th>
                 <th scope="col">Start Time</th>
@@ -148,6 +173,7 @@
             row.innerHTML = `
                 <td scope="col" id="event_name">${value.name}</td>
                 <td scope="col" id="event_type">${value.type}</td>
+                <td scope="col" id="event_campus">${value.campus || ""}</td>
                 <td scope="col">${value.room}</td>
                 <td scope="col" value="${value.date}">${convertDateFormat(value.date)}</td>
                 <td scope="col" value="${value.start_time}">${convertTimeFormat(value.start_time)}</td>

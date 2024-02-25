@@ -70,22 +70,28 @@ const queryTable = (target_query, filterValue) => {
       .querySelector("#event_name")
       .innerHTML.toLowerCase();
     let description = allTds[i].querySelector("#description");
-    // let event_campus = allTds[i]
-    //   .querySelector("#event_campus")
-    //   .innerHTML.toLowerCase();
+    let event_campus = allTds[i]
+      .querySelector("#event_campus")
+      .innerHTML.toLowerCase();
+    let campusSelected = document
+      .getElementById("campus_filter")
+      .value.toLowerCase();
     let typeFilter = document
       .getElementById("event_type_filter")
       .value.toLowerCase();
-    // let campusSelected = document
-    //   .getElementById("campus_filter")
-    //   .value.toLowerCase();
+
     let event_type = allTds[i]
       .querySelector("#event_type")
       .innerHTML.toLowerCase();
 
     let type_search_value = event_type == typeFilter || typeFilter == "all";
-    if (event_name.includes(query) || description.includes(query)) {
+    console.log(event_campus != campusSelected);
+    if (event_name.includes(query) || description.innerText.includes(query)) {
+      console.log("event_campus " + event_campus);
+      console.log("campusSelected " + campusSelected);
       allTds[i].style.display = type_search_value ? "" : "none";
+      if (event_campus != campusSelected && campusSelected != "all")
+        allTds[i].style.display = "none";
     } else {
       allTds[i].style.display = "none";
     }
