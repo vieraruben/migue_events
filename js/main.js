@@ -128,7 +128,7 @@ function convertDateFormat(date) {
   return split_date[1] + "/" + split_date[2] + "/" + split_date[0];
 }
 
-function showSlides(campusName) {
+function selectCampus(campusName) {
   let campusesList = ["macon", "cochran", "dublin", "eastman", "warner"];
   campusesList.forEach((campus) => {
     let buttonSelected = document.getElementById(campus);
@@ -138,28 +138,10 @@ function showSlides(campusName) {
       buttonSelected.classList.remove("event_rooms");
     }
   });
-  // console.log(campusName);
 
-  // document.getElementById(campusName).classList.add("");
-
-  // var index;
-  // var slides = document.getElementsByClassName("singleSlide");
-  // var pageSwitch = document.getElementsByClassName("pageSwitch");
-  // if (n > slides.length) {
-  //   slideIndex = 1;
-  // }
-  // if (n < 1) {
-  //   slideIndex = slides.length;
-  // }
-  // for (index = 0; index < slides.length; index++) {
-  //   slides[index].style.display = "none";
-  // }
-  // for (index = 0; index < dots.length; index++) {
-  //   pageSwitch[index].className = pageSwitch[index].className.replace(
-  //     " active",
-  //     ""
-  //   );
-  // }
-  // slides[slideIndex - 1].style.display = "block";
-  // pageSwitch[slideIndex - 1].className += " active";
+  let cards = document.querySelectorAll(".col");
+  cards.forEach((card) => {
+    console.log(card.id);
+    card.style.display = card.id.startsWith(campusName) ? "" : "none";
+  });
 }

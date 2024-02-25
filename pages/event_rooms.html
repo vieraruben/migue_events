@@ -86,7 +86,7 @@
         id="macon"
         class="btn btn-light event_rooms"
         style="margin-right: 10px; font-size: 20px"
-        onclick="showSlides('macon')"
+        onclick="selectCampus('macon')"
       >
         Macon
       </button>
@@ -95,7 +95,7 @@
         id="cochran"
         class="btn btn-light"
         style="margin-right: 10px; font-size: 20px"
-        onclick="showSlides('cochran')"
+        onclick="selectCampus('cochran')"
       >
         Cochran
       </button>
@@ -104,7 +104,7 @@
         class="btn btn-light"
         id="dublin"
         style="margin-right: 10px; font-size: 20px"
-        onclick="showSlides('dublin')"
+        onclick="selectCampus('dublin')"
       >
         Dublin
       </button>
@@ -113,7 +113,7 @@
         class="btn btn-light"
         id="eastman"
         style="margin-right: 10px; font-size: 20px"
-        onclick="showSlides('eastman')"
+        onclick="selectCampus('eastman')"
       >
         Eastman
       </button>
@@ -122,7 +122,7 @@
         class="btn btn-light"
         id="warner"
         style="margin-right: 10px; font-size: 20px"
-        onclick="showSlides('warner')"
+        onclick="selectCampus('warner')"
       >
         Warner Robins
       </button>
@@ -166,16 +166,21 @@
         for (var key in allEvents) {
           var value = allEvents[key];
           const card = document.createElement("div");
+          card.id = value.campus + key;
           card.classList = "col";
+          if (value.campus != "macon") {
+            card.style.display = "none";
+          }
           card.innerHTML = `
-          <div class="card" style="width: 30rem; margin-bottom: 2em; margin-top: 7em"">
+          <div class="card" style="width: 30rem; margin-bottom: 2em; margin-top: 7em;">
             <img class="card-img-top" src="${value.pic}" style="height: 300px" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">${value.name}</h5>
               <p class="card-text">Capacity: ${value.room_capacity} seats</p>
+              <p class="card-text">Campus: ${value.campus}</p>
             </div>
           </div>
-              
+
               `;
           eventTable.appendChild(card);
         }

@@ -65,7 +65,8 @@ const deleteItemAsync = async (collection, key) => {
 // var listRef = database.ref("event_rooms/");
 // var newRef = listRef.push();
 // newRef.set({
-//   name: "THEATRE.jpg",
-//   pic: "https://github.com/vieraruben/migue_events/blob/main/images/THEATRE.jpg",
+//   name: "Walker Auditorium.jpg",
+//   pic: "https://github.com/vieraruben/migue_events/blob/main/images/warner/Walker%20Auditorium.jpg?raw=true",
 //   room_capacity: 250,
+//   campus: "warner",
 // });
