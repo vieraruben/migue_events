@@ -69,12 +69,18 @@ const queryTable = (target_query, filterValue) => {
     let event_name = allTds[i]
       .querySelector("#event_name")
       .innerHTML.toLowerCase();
-    let description = allTds[i]
-      .querySelector("#description")
+    let description = allTds[i].querySelector("#description");
+    let event_campus = allTds[i]
+      .querySelector("#event_campus")
       .innerHTML.toLowerCase();
+    console.log(event_campus);
     let typeFilter = document
       .getElementById("event_type_filter")
       .value.toLowerCase();
+    let campusSelected = document
+      .getElementById("campus_filter")
+      .value.toLowerCase();
+    console.log(campusSelected);
     let event_type = allTds[i]
       .querySelector("#event_type")
       .innerHTML.toLowerCase();
