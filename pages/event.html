@@ -102,11 +102,11 @@
               onchange="filterEventRooms()"
             >
               <option selected>None</option>
-              <option value="macon">Macon</option>
-              <option value="cochran">Cochran</option>
-              <option value="dublin">Dublin</option>
-              <option value="eastman">Eastman</option>
-              <option value="warner">Warner Robins</option>
+              <option value="Macon">Macon</option>
+              <option value="Cochran">Cochran</option>
+              <option value="Dublin">Dublin</option>
+              <option value="Eastman">Eastman</option>
+              <option value="Warner Robbins">Warner Robins</option>
             </select>
           </div>
           <div class="form-group" style="margin-bottom: 10px" id="event_rooms">
@@ -227,14 +227,14 @@
         document.getElementById("start_time").value = event_record.start_time;
         document.getElementById("end_time").value = event_record.end_time;
         document.getElementById("description").value = event_record.description;
-        loadEventRooms(event_record.room, event_record.campus);
+        filterEventRooms();
       };
+
+      loadEventRooms();
 
       if (event_id != -1) {
         document.getElementById("form_title").innerHTML = "Update Event";
         loadRecord(event_id);
-      } else {
-        loadEventRooms(null, null);
       }
 
       const createSaveEventRecord = async () => {
@@ -301,22 +301,12 @@
         }
       };
 
-      // if (event_id != "-1") {
-      //   console.log("i am gere");
-      //   filterEventRooms();
-      // }
-
-      filterEventRooms();
       function filterEventRooms() {
-        const campus = document.getElementById("campus").value;
-        console.log("campus " + campus);
+        const campus = document.getElementById("campus").value.toLowerCase();
         const event_rooms = document.getElementById("event_rooms");
         let rooms = document.getElementById("room");
-        if (campus != "none") event_rooms.style.display = "";
         let options = rooms.options;
-        console.log(options.length);
         for (let i = 0; i < options.length; i++) {
-          console.log("filtering rooms");
           let option = options[i];
           option.style.display = option.id.startsWith(campus) ? "" : "none";
         }
