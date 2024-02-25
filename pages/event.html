@@ -38,15 +38,21 @@
             <svg class="bi me-2" width="40" height="32">
               <use xlink:href="#bootstrap" />
             </svg>
-            <span class="fs-4" style="color: #fff; font-weight: bold;">MGA Event Planner</span>
+            <span class="fs-4" style="color: #fff; font-weight: bold"
+              >MGA Event Planner</span
+            >
           </a>
 
           <ul class="nav nav-pills" id="mynavbar">
             <li class="nav-item">
-              <a href="event.html?id=-1" class="nav-link link_event_style" >Event Request</a>
+              <a href="event.html?id=-1" class="nav-link link_event_style"
+                >Event Request</a
+              >
             </li>
             <li class="nav-item">
-              <a href="event_rooms.html" class="nav-link link_event_style">Event Rooms</a>
+              <a href="event_rooms.html" class="nav-link link_event_style"
+                >Event Rooms</a
+              >
             </li>
           </ul>
         </header>
@@ -88,6 +94,26 @@
             </select>
           </div>
           <div class="form-group" style="margin-bottom: 10px">
+            <label for="type">Campus</label>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              id="campus"
+              onchange="filterEventRooms()"
+            >
+              <option selected>None</option>
+              <option value="macon">Macon</option>
+              <option value="cochran">Cochran</option>
+              <option value="dublin">Dublin</option>
+              <option value="eastman">Eastman</option>
+              <option value="warner">Warner</option>
+            </select>
+          </div>
+          <div
+            class="form-group"
+            style="margin-bottom: 10px; display: none"
+            id="event_rooms"
+          >
             <label for="type">Event Room</label>
             <select
               class="form-select"
@@ -178,6 +204,7 @@
         }
         document.getElementById("name").value = event_record.name;
         document.getElementById("type").value = event_record.type;
+        document.getElementById("campus").value = event_record.campus;
         document.getElementById("room").value = event_record.room;
         document.getElementById("date").value = event_record.date;
         document.getElementById("start_time").value = event_record.start_time;
@@ -200,6 +227,7 @@
           var value = roomList[key];
           const newOption = document.createElement("option");
           newOption.value = value.name;
+          newOption.id = value.campus + key;
           newOption.innerHTML = value.name;
           eventRoom.appendChild(newOption);
         }
@@ -210,6 +238,7 @@
         let success_message = document.getElementById("success");
         let name = document.getElementById("name").value;
         let type = document.getElementById("type").value;
+        let campus = document.getElementById("campus").value;
         let room = document.getElementById("room").value;
         let date = document.getElementById("date").value;
         let start_time = document.getElementById("start_time").value;
@@ -224,6 +253,7 @@
             let response = await updateItemAsync("events", event_id, {
               name,
               type,
+              campus,
               room,
               date,
               start_time,
@@ -247,6 +277,7 @@
             await createRecord("events/", {
               name,
               type,
+              campus,
               room,
               date,
               start_time,
@@ -266,6 +297,18 @@
           }
         }
       };
+
+      function filterEventRooms() {
+        const campus = document.getElementById("campus").value;
+        const event_rooms = document.getElementById("event_rooms");
+        let rooms = document.getElementById("room");
+        if (campus != "none") event_rooms.style.display = "";
+        let options = rooms.options;
+        for (let i = 0; i < options.length; i++) {
+          let option = options[i];
+          option.style.display = option.id.startsWith(campus) ? "" : "none";
+        }
+      }
     </script>
   </body>
 </html>
