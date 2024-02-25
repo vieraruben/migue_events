@@ -106,14 +106,10 @@
               <option value="cochran">Cochran</option>
               <option value="dublin">Dublin</option>
               <option value="eastman">Eastman</option>
-              <option value="warner">Warner</option>
+              <option value="warner">Warner Robins</option>
             </select>
           </div>
-          <div
-            class="form-group"
-            style="margin-bottom: 10px; display: none"
-            id="event_rooms"
-          >
+          <div class="form-group" style="margin-bottom: 10px" id="event_rooms">
             <label for="type">Event Room</label>
             <select
               class="form-select"
@@ -193,6 +189,25 @@
       const urlParams = new URLSearchParams(window.location.search);
       const event_id = urlParams.get("id");
 
+      // load event rooms
+      const loadEventRooms = async () => {
+        const eventRoom = document.querySelector("#room");
+        const roomList = await loadAllItems("event_rooms");
+        let listEvents = [];
+        for (const key in roomList) {
+          var value = roomList[key];
+          const newOption = document.createElement("option");
+          newOption.value = value.name;
+          newOption.id = value.campus + key;
+          if (event_id == "-1") {
+            newOption.style.display = "none";
+          }
+          newOption.innerHTML = value.name;
+          eventRoom.appendChild(newOption);
+        }
+      };
+      loadEventRooms();
+
       const loadRecord = async (event_id) => {
         const event_record = await loadItemByKey("events", event_id);
         if (!event_record) {
@@ -202,6 +217,8 @@
                               This record doesn't exist!
                           </div>`;
         }
+
+        console.log(event_record);
         document.getElementById("name").value = event_record.name;
         document.getElementById("type").value = event_record.type;
         document.getElementById("campus").value = event_record.campus;
@@ -213,26 +230,9 @@
       };
 
       if (event_id != -1) {
-        console.log("heelooooooooooooo");
         document.getElementById("form_title").innerHTML = "Update Event";
         loadRecord(event_id);
       }
-
-      // load event rooms
-      const loadEventRooms = async () => {
-        const eventRoom = document.querySelector("#room");
-        const roomList = await loadAllItems("event_rooms");
-        let listEvents = [];
-        for (const key in roomList) {
-          var value = roomList[key];
-          const newOption = document.createElement("option");
-          newOption.value = value.name;
-          newOption.id = value.campus + key;
-          newOption.innerHTML = value.name;
-          eventRoom.appendChild(newOption);
-        }
-      };
-      loadEventRooms();
 
       const createSaveEventRecord = async () => {
         let success_message = document.getElementById("success");
@@ -298,8 +298,14 @@
         }
       };
 
+      // if (event_id != "-1") {
+      //   console.log("i am gere");
+      //   filterEventRooms();
+      // }
+
       function filterEventRooms() {
         const campus = document.getElementById("campus").value;
+        console.log("campus " + campus);
         const event_rooms = document.getElementById("event_rooms");
         let rooms = document.getElementById("room");
         if (campus != "none") event_rooms.style.display = "";
