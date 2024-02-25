@@ -190,7 +190,7 @@
       const event_id = urlParams.get("id");
 
       // load event rooms
-      const loadEventRooms = async () => {
+      const loadEventRooms = async (event_room, campus) => {
         const eventRoom = document.querySelector("#room");
         const roomList = await loadAllItems("event_rooms");
         let listEvents = [];
@@ -199,14 +199,14 @@
           const newOption = document.createElement("option");
           newOption.value = value.name;
           newOption.id = value.campus + key;
-          if (event_id == "-1") {
+          if (event_id == "-1" || (value.campus != campus && campus)) {
             newOption.style.display = "none";
           }
           newOption.innerHTML = value.name;
           eventRoom.appendChild(newOption);
         }
+        if (event_room) eventRoom.value = event_room;
       };
-      loadEventRooms();
 
       const loadRecord = async (event_id) => {
         const event_record = await loadItemByKey("events", event_id);
@@ -227,11 +227,14 @@
         document.getElementById("start_time").value = event_record.start_time;
         document.getElementById("end_time").value = event_record.end_time;
         document.getElementById("description").value = event_record.description;
+        loadEventRooms(event_record.room, event_record.campus);
       };
 
       if (event_id != -1) {
         document.getElementById("form_title").innerHTML = "Update Event";
         loadRecord(event_id);
+      } else {
+        loadEventRooms(null, null);
       }
 
       const createSaveEventRecord = async () => {
@@ -303,6 +306,7 @@
       //   filterEventRooms();
       // }
 
+      filterEventRooms();
       function filterEventRooms() {
         const campus = document.getElementById("campus").value;
         console.log("campus " + campus);
@@ -310,7 +314,9 @@
         let rooms = document.getElementById("room");
         if (campus != "none") event_rooms.style.display = "";
         let options = rooms.options;
+        console.log(options.length);
         for (let i = 0; i < options.length; i++) {
+          console.log("filtering rooms");
           let option = options[i];
           option.style.display = option.id.startsWith(campus) ? "" : "none";
         }
