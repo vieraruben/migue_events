@@ -99,6 +99,7 @@ const queryTable = (target_query, filterValue) => {
 };
 
 var ascendingOrder = true;
+
 function sortTableByDate(tableId, date_field_position) {
   document.getElementById("sort_up").style.display = ascendingOrder
     ? ""
