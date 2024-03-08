@@ -140,13 +140,7 @@ function convertDateFormat(date) {
 }
 
 function selectCampus(campusName) {
-  let campusesList = [
-    "Macon",
-    "Cochran",
-    "Dublin",
-    "Eastman",
-    "Warner Robbins",
-  ];
+  let campusesList = ["Macon", "Cochran", "Dublin", "Eastman", "Warner Robins"];
 
   campusesList.forEach((campus) => {
     let buttonSelected = document.getElementById(campus);
